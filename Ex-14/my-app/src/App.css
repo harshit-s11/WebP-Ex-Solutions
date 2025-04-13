@@ -1,0 +1,128 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 20px;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+/* Image Container Styles */
+.image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Form Styles */
+.form-container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 350px;
+}
+
+h2 {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+input, select {
+  width: 100%;
+  padding: 5px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+fieldset {
+  border: none;
+  margin: 10px 0;
+}
+
+legend {
+  font-weight: bold;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+}
+
+button[type="button"] {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Profile Styles */
+.profile-page {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-image img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #007bff;
+}
+
+.user-info {
+  text-align: center;
+  margin: 15px 0;
+}
+
+.user-posts {
+  width: 100%;
+}
+
+.user-posts ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.user-posts li {
+  background-color: #f0f0f0;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+}
