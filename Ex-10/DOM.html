@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Selection Example</title>
+    <style>
+        .input-field {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="title">Original Title</h1>
+
+    <form>
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username">
+        <br>
+
+        <label>Gender:</label>
+        <input type="radio" name="gender" value="Male"> Male
+        <input type="radio" name="gender" value="Female"> Female
+        <input type="radio" name="gender" value="Other"> Other
+        <br>
+
+        <label>Hobbies:</label>
+        <input type="checkbox" class="hobby" value="Reading"> Reading
+        <input type="checkbox" class="hobby" value="Traveling"> Traveling
+        <input type="checkbox" class="hobby" value="Music"> Music
+        <br>
+        
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ul>
+
+        <p class="info">This is info paragraph 1</p>
+        <p class="info">This is info paragraph 2</p>
+        <p>This is a general paragraph</p>
+
+        <div class="input-field">
+            <input type="text" placeholder="Input field 1">
+        </div>
+        <div class="input-field">
+            <input type="text" placeholder="Input field 2">
+        </div>
+    </form>
+
+    <script>
+        document.getElementById("title").innerText = "Updated Title";
+
+        document.getElementsByName("username")[0].value = "John Doe";
+
+        const genderRadioButtons = document.getElementsByName("gender");
+        let selectedGender = "None selected";
+        for (let radioButton of genderRadioButtons) {
+            if (radioButton.checked) {
+                selectedGender = radioButton.value;
+                break;
+            }
+        }
+        console.log("Selected Gender: " + selectedGender);
+
+        const pElements = document.getElementsByTagName("p");
+        console.log("Total number of <p> elements: " + pElements.length);
+
+        const liElements = document.getElementsByTagName("li");
+        for (let li of liElements) {
+            console.log("List Item: " + li.textContent);
+        }
+
+        const inputFields = document.getElementsByClassName("input-field");
+        for (let field of inputFields) {
+            field.style.backgroundColor = "lightblue";
+        }
+
+        const firstInfoParagraph = document.querySelector(".info");
+        firstInfoParagraph.textContent = "This is the first info paragraph";
+
+        const firstGenderRadio = document.querySelector("input[name='gender']");
+        if (firstGenderRadio) {
+            firstGenderRadio.checked = true;
+        }
+
+        const infoParagraphs = document.querySelectorAll(".info");
+        infoParagraphs.forEach(p => {
+            console.log("Info Paragraph: " + p.textContent);
+        });
+
+        const hobbyCheckboxes = document.querySelectorAll(".hobby");
+        hobbyCheckboxes.forEach(checkbox => {
+            checkbox.checked = true;
+            console.log("Checked Hobby: " + checkbox.value);
+        });
+    </script>
+
+</body>
+</html>

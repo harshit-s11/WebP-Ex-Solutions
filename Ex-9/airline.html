@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Categorization</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Temperature Categorization for New York City</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Temperature (°F)</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody id="tempTable"></tbody>
+    </table>
+
+    <p>Number of HOT days: <span id="hotCount">0</span></p>
+    <p>Number of PLEASANT days: <span id="pleasantCount">0</span></p>
+    <p>Number of COLD days: <span id="coldCount">0</span></p>
+
+    <script>
+        const temperatures = [55, 62, 68, 74, 59, 45, 41, 58, 60, 67, 65, 78, 82, 88, 91, 92, 90, 93, 87, 80, 78, 79, 72, 68, 61, 59, 55, 65];
+
+        let hotCount = 0;
+        let pleasantCount = 0;
+        let coldCount = 0;
+
+        const tempTable = document.getElementById("tempTable");
+
+        temperatures.forEach((temp, index) => {
+            let category;
+            
+            if (temp >= 85) {
+                category = "HOT";
+                hotCount++;
+            } else if (temp >= 60 && temp <= 84) {
+                category = "PLEASANT";
+                pleasantCount++;
+            } else {
+                category = "COLD";
+                coldCount++;
+            }
+
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>Day ${index + 1}</td>
+                <td>${temp}°F</td>
+                <td>${category}</td>
+            `;
+            tempTable.appendChild(row);
+        });
+
+        document.getElementById("hotCount").textContent = hotCount;
+        document.getElementById("pleasantCount").textContent = pleasantCount;
+        document.getElementById("coldCount").textContent = coldCount;
+    </script>
+</body>
+</html>

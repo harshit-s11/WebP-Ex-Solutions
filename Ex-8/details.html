@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Display</title>
+    <style>
+        #reg {
+            font-size:medium;
+            height: 30px;
+            width: 100px;
+            border: 5px solid red;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #name {
+            display: grid;
+            place-items: center;
+            height: 50px;
+            width: 110px;
+            border: 2px solid black;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="reg"></div>
+    <div id="name"></div>
+    
+    <script>
+        let reg = prompt("Enter your registration number:");
+        document.getElementById("reg").innerText = reg;
+        
+        let name = prompt("Enter your name:");
+        document.getElementById("name").innerText = name;
+    </script>
+</body>
+</html>

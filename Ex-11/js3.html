@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript Form Validation</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+}
+.container {
+  border: 2px solid black;
+  width: 600px;
+  padding: 15px;
+  box-sizing: border-box;
+}
+h2 {
+  margin: 0;
+}
+.time-box {
+  float: right;
+  border: 1px solid black;
+  padding: 5px;
+  font-weight: bold;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+td {
+  padding: 8px;
+}
+input, select {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+}
+.error {
+  color: red;
+  font-size: 14px;
+}
+.checkbox-group, .radio-group {
+  display: flex;
+  gap: 10px;
+}
+button {
+  padding: 5px 10px;
+  margin-top: 10px;
+}
+.required {
+  color: red;
+  font-size: 18px;
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h2>Test JavaScript Form Validation</h2>
+<div class="time-box" id="timeBox"></div>
+
+<form id="validationForm">
+<table>
+  <tr>
+    <td>Name<span class="required">*</span>:</td>
+    <td><input type="text" id="name" onblur="validateField('name', 'nameError', 'Please enter your name!')"></td>
+    <td><span class="error" id="nameError"></span></td>
+  </tr>
+  <tr>
+    <td>Address:</td>
+    <td><input type="text"></td>
+  </tr>
+  <tr>
+    <td>Zip Code<span class="required">*</span>:</td>
+    <td><input type="text" id="zip" onblur="validateField('zip', 'zipError', 'Zip Code must be a 5-6 digit number!')"></td>
+    <td><span class="error" id="zipError"></span></td>
+  </tr>
+  <tr>
+    <td>Country<span class="required">*</span>:</td>
+    <td>
+      <select id="country" onchange="validateField('country', 'countryError', 'Please select a country!')">
+        <option value="">Please select...</option>
+        <option value="USA">USA</option>
+        <option value="India">India</option>
+        <option value="Canada">Canada</option>
+      </select>
+    </td>
+    <td><span class="error" id="countryError"></span></td>
+  </tr>
+  <tr>
+    <td>Gender<span class="required">*</span>:</td>
+    <td class="radio-group">
+      <input type="radio" name="gender" value="Male"> Male
+      <input type="radio" name="gender" value="Female"> Female
+    </td>
+  </tr>
+  <tr>
+    <td>Preferences:</td>
+    <td class="checkbox-group">
+      <input type="checkbox" value="Red"> Red
+      <input type="checkbox" value="Green"> Green
+      <input type="checkbox" value="Blue"> Blue
+    </td>
+  </tr>
+  <tr>
+    <td>Phone<span class="required">*</span>:</td>
+    <td><input type="text" id="phone" onblur="validateField('phone', 'phoneError', 'Phone number must be 10 digits!')"></td>
+    <td><span class="error" id="phoneError"></span></td>
+  </tr>
+  <tr>
+    <td>Email<span class="required">*</span>:</td>
+    <td><input type="email" id="email" onblur="validateField('email', 'emailError', 'Enter a valid email address!')"></td>
+    <td><span class="error" id="emailError"></span></td>
+  </tr>
+  <tr>
+    <td>Password (6-8 characters)<span class="required">*</span>:</td>
+    <td><input type="password" id="password" onblur="validateField('password', 'passwordError', 'Password must be between 6-8 characters!')"></td>
+    <td><span class="error" id="passwordError"></span></td>
+  </tr>
+  <tr>
+    <td>Verify Password<span class="required">*</span>:</td>
+    <td><input type="password" id="confirmPassword" onblur="validatePassword()"></td>
+    <td><span class="error" id="confirmPasswordError"></span></td>
+  </tr>
+  <tr>
+    <td>PAN No:</td>
+    <td><input type="text"></td>
+  </tr>
+  <tr>
+    <td colspan="3">
+      <button type="button" onclick="validateForm()">SEND</button>
+      <button type="reset">CLEAR</button>
+    </td>
+  </tr>
+</table>
+</form>
+</div>
+
+<script>
+
+function updateTime() {
+  let now = new Date();
+  let timeString = now.getHours().toString().padStart(2, '0') + ":" +
+                   now.getMinutes().toString().padStart(2, '0') + ":" +
+                   now.getSeconds().toString().padStart(2, '0');
+  document.getElementById("timeBox").textContent = "Time: " + timeString;
+}
+setInterval(updateTime, 1000);
+updateTime();
+
+function validateField(fieldId, errorId, errorMessage) {
+  let field = document.getElementById(fieldId);
+  let errorSpan = document.getElementById(errorId);
+  if (field.value.trim() === "") {
+    errorSpan.textContent = errorMessage;
+    field.style.border = "2px solid red";
+    field.focus();
+  } else {
+    errorSpan.textContent = "";
+    field.style.border = "";
+  }
+}
+
+function validatePassword() {
+  let password = document.getElementById("password").value;
+  let confirmPassword = document.getElementById("confirmPassword").value;
+  let errorSpan = document.getElementById("confirmPasswordError");
+
+  if (password !== confirmPassword) {
+    errorSpan.textContent = "Passwords do not match!";
+    document.getElementById("confirmPassword").style.border = "2px solid red";
+    document.getElementById("confirmPassword").focus();
+  } else {
+    errorSpan.textContent = "";
+    document.getElementById("confirmPassword").style.border = "";
+  }
+}
+
+function validateForm() {
+  let requiredFields = ["name", "zip", "country", "phone", "email", "password", "confirmPassword"];
+  for (let field of requiredFields) {
+    if (document.getElementById(field).value.trim() === "") {
+      document.getElementById(field).focus();
+      return;
+    }
+  }
+  alert("Form submitted successfully!");
+}
+</script>
+
+</body>
+</html>

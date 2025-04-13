@@ -1,0 +1,63 @@
+body {
+    position: relative;
+    background-image: url('https://images.squarespace-cdn.com/content/v1/5e950775bee93b4c91e3d327/5752df7c-0739-4192-abb1-8a18da95a64d/Website+Background.png');
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 3em;
+    width: 950px;
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+}
+p{
+    color: white;
+}
+.content {
+    column-count: 3;
+    column-gap: 20px;
+    padding: 20px;
+}
+
+.description {
+    margin-bottom: 20px;
+    line-height: 30pt;
+}
+
+.description h2 {
+    color: #333;
+    font-size: 1.5em;
+}
+
+.ball-animation {
+    position: absolute;
+    bottom: 24%;
+    left: 1%;
+    transform-origin: center;
+    animation: ballMovement 2.5s infinite reverse;
+}
+
+.dog{
+    width: 400px;
+}
+
+@keyframes ballMovement {
+    0% {
+        transform: translatey( -20%) rotate(90deg) scale(2);
+    }
+    50% {
+        transform: translatey( 115%) rotate(200deg) scale(1);
+    }
+    100% {
+        transform: translatey( -20%) rotate(360deg) scale(2);
+    }
+}

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #fff;
+            color: #333;
+            line-height: 1.6;
+        }
+        section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        h2 {
+            color: #3f51b5;
+            border-bottom: 2px solid #3f51b5;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        figure {
+            text-align: center;
+            margin: 20px 0;
+        }
+        figure img {
+            max-width: 150px;
+            border-radius: 50%;
+            border: 3px solid #3f51b5;
+        }
+        figcaption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #666;
+        }
+        article {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        article h3 {
+            margin-top: 0;
+            color: #3f51b5;
+        }
+        progress, meter {
+            width: 100%;
+            height: 20px;
+            margin: 5px 0;
+        }
+        details {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f0f2ff;
+            border-radius: 5px;
+        }
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+            color: #3f51b5;
+        }
+        details p {
+            margin: 10px 0 0;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+        .skill-item {
+            margin-bottom: 10px;
+        }
+        .skill-name {
+            display: inline-block;
+            width: 120px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Professional Resume</h1>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <figure>
+            <img src="https://via.placeholder.com/150" alt="John Doe">
+            <figcaption>John Doe - Software Engineer</figcaption>
+        </figure>
+        <p>A passionate software engineer with over 5 years of experience developing scalable web applications and solutions. Expert in modern web technologies with a focus on creating accessible, user-friendly interfaces.</p>
+    </section>
+
+    <section id="education">
+        <h2>Education</h2>
+        <article>
+            <h3>Bachelor of Technology in Computer Science</h3>
+            <p>XYZ University, 2015 - 2019</p>
+            <p>GPA: 3.8/4.0</p>
+            <meter value="3.8" min="0" max="4" optimum="4">3.8 out of 4.0</meter>
+        </article>
+        <article>
+            <h3>Master of Science in Software Engineering</h3>
+            <p>ABC University, 2019 - 2021</p>
+            <p>GPA: 3.9/4.0</p>
+            <meter value="3.9" min="0" max="4" optimum="4">3.9 out of 4.0</meter>
+        </article>
+    </section>
+
+    <section id="experience">
+        <h2>Work Experience</h2>
+        <article>
+            <h3>Senior Software Engineer</h3>
+            <p>ABC Technologies, 2021 - Present</p>
+            <details>
+                <summary>Responsibilities & Achievements</summary>
+                <p>Led the development of the company's flagship product, increasing user engagement by 45%. Mentored junior developers and implemented CI/CD pipelines that reduced deployment times by 60%.</p>
+            </details>
+        </article>
+        <article>
+            <h3>Software Developer</h3>
+            <p>XYZ Solutions, 2019 - 2021</p>
+            <details>
+                <summary>Responsibilities & Achievements</summary>
+                <p>Developed and maintained multiple web applications using JavaScript frameworks. Collaborated with the design team to implement responsive UI/UX improvements.</p>
+            </details>
+        </article>
+    </section>
+
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        <div class="skill-item">
+            <span class="skill-name">JavaScript</span>
+            <progress value="90" max="100">90%</progress>
+        </div>
+        <div class="skill-item">
+            <span class="skill-name">HTML5/CSS3</span>
+            <progress value="95" max="100">95%</progress>
+        </div>
+        <div class="skill-item">
+            <span class="skill-name">React.js</span>
+            <progress value="85" max="100">85%</progress>
+        </div>
+        <div class="skill-item">
+            <span class="skill-name">Node.js</span>
+            <progress value="80" max="100">80%</progress>
+        </div>
+        <div class="skill-item">
+            <span class="skill-name">Python</span>
+            <progress value="75" max="100">75%</progress>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Notable Projects</h2>
+        <article>
+            <h3>E-commerce Platform</h3>
+            <p>Developed a full-stack e-commerce solution with React and Node.js</p>
+            <details>
+                <summary>Project Details</summary>
+                <p>Built a scalable shopping platform with features including user authentication, product catalog, shopping cart, and payment integration. Implemented responsive design and accessibility features.</p>
+            </details>
+        </article>
+        <article>
+            <h3>Task Management System</h3>
+            <p>Created a productivity application with real-time updates</p>
+            <details>
+                <summary>Project Details</summary>
+                <p>Designed and implemented a collaborative task management system using React, Redux, and Firebase. Features include drag-and-drop task organization, priority settings, and team collaboration tools.</p>
+            </details>
+        </article>
+    </section>
+</body>
+</html>

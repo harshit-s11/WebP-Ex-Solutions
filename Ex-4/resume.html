@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Page</title>
+</head>
+<body>
+  <form width="60%">
+    <fieldset>
+      <legend><b><font color="red">Personal Details</font></b></legend>
+      <table>
+        <tr>
+          <td><label>Name</label></td>
+          <td>:</td>
+          <td><input type="text"></td>
+        </tr>
+        <tr>
+          <td><label>Password</label></td>
+          <td>:</td>
+          <td><input type="password"></td>
+        </tr>
+        <tr>
+          <td><label>E-mail id</label></td>
+          <td>:</td>
+          <td><input type="email"></td>
+        </tr>
+        <tr>
+          <td><label>Gender</label></td>
+          <td>:</td>
+          <td>
+            <input type="radio" name="gender" value="Male"><label> Male</label>
+            <input type="radio" name="gender" value="Female" checked><label> Female</label>
+          </td>
+        </tr>
+        <tr>
+          <td><label>DOB</label></td>
+          <td>:</td>
+          <td><input type="date" placeholder="mm/dd/yyyy"></td>
+        </tr>
+        <tr>
+          <td><label>Mobile#</label></td>
+          <td>:</td>
+          <td><input type="number"></td>
+        </tr>
+      </table>
+    </fieldset>
+
+    <fieldset>
+      <legend><b><font color="red">Educational Qualification</font></b></legend>
+      <table>
+        <tr>
+          <td><label>Degree</label></td>
+          <td>:</td>
+          <td>
+            <select>
+              <option>-- Select Group --</option>
+              <optgroup label="UG">
+                <option value="BE">BE</option>
+                <option value="BTech">BTech</option>
+                <option value="BSc">BSc</option>
+                <option value="BA">BA</option>
+                <option value="BCA">BCA</option>
+                <option value="BBA">BBA</option>
+                <option value="Others">Others</option>
+              </optgroup>
+              <optgroup label="PG">
+                <option value="ME">ME</option>
+                <option value="MTech">MTech</option>
+                <option value="MSc">MSc</option>
+                <option value="MA">MA</option>
+                <option value="MCA">MCA</option>
+                <option value="MBA">MBA</option>
+                <option value="Others">Others</option>
+              </optgroup>
+              <optgroup label="PhD">
+                <option value="Engineering">Engineering</option>
+                <option value="Science">Science</option>
+                <option value="Management">Management</option>
+                <option value="Others">Others</option>
+              </optgroup>
+            </select>
+          </td>
+          <td><label>Engineering</label></td>
+          <td>:</td>
+          <td>
+            <select>
+              <option>-- Select Group --</option>
+              <option value="CSE">CSE</option>
+              <option value="ECE">ECE</option>
+              <option value="EEE">EEE</option>
+              <option value="CIVIL">CIVIL</option>
+              <option value="MECH">MECH</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+
+    <table>
+      <tr>
+        <td><label>Hobbies</label></td>
+        <td>:</td>
+        <td>
+          <input type="checkbox" name="hobby" value="chess"><label> Playing chess</label>
+          <input type="checkbox" name="hobby" value="books"><label> Reading Books</label>
+        </td>
+      </tr>
+      <tr>
+        <td><label>Favourite Color</label></td>
+        <td>:</td>
+        <td><input type="color"></td>
+      </tr>
+    </table>
+
+    <p><b><font color="red">Address</font></b></p>
+    <textarea rows="4" cols="80"></textarea>
+
+    <table>
+      <tr>
+        <td><label>Attch Resume</label></td>
+        <td>:</td>
+        <td><input type="file"></td>
+        <td><input type="submit" value="Submit"></td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html>

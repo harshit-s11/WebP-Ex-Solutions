@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Exercise</title>
+    <script>
+        const RATE_PER_HOUR = 45;
+
+        let hoursWorked = parseFloat(prompt("Enter hours worked:"));
+        let materialCost = parseFloat(prompt("Enter cost of materials:"));
+
+        let labourCost = RATE_PER_HOUR * hoursWorked;
+        let totalCharge = labourCost + materialCost;
+
+        alert("Labour Cost: Rs. " + labourCost + 
+            "\nMaterial Cost: Rs. " + materialCost + 
+            "\nTotal Charge: Rs. " + totalCharge);
+    </script>
+</head>
+<body>
+    <h2>Open browser console to see output</h2>
+</body>
+</html>

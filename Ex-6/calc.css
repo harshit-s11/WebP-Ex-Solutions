@@ -1,0 +1,41 @@
+td{
+    text-align: center;
+    background-color: white;
+    border: 2px solid skyblue;
+    border-radius: 5px;
+    height: 30px;
+    width: 70px;
+    color: grey;
+}
+.first{
+    border-bottom: 1px;
+}
+table{
+    background-color: skyblue;
+    padding: 5px;
+}
+#C{
+    color: white;
+    background-color: rgb(244,139,156);
+    border: 3px solid skyblue;
+    border-bottom: 3px solid rgb(235,115,135);
+    border-radius: 5px;
+}
+#empty{
+    background-color: #7BA8BD;
+    border: 2px solid skyblue;
+    border-radius: 5px;
+    border-top: 3px solid #5c93ac;
+}
+#equals{
+    background-color: #F2FF93;
+    border-bottom: 3px solid #9DA653;
+}
+.operator{
+    background-color: #fdddea;
+}
+td:hover,#C:hover,#equals:hover{
+    background-color: #9e88f7;
+    border-bottom: 3px solid #6952d1;
+    color: white;
+}

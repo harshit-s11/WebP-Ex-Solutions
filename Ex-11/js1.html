@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Elements & Events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        h2 {
+            color: #00698f;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+            text-align: center;
+            background-color: #ffffff;
+        }
+        button, input {
+            margin: 5px;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #3e8e41;
+        }
+        input[type="text"] {
+            width: 200px;
+        }
+        #colorButton {
+            background-color: red;
+        }
+        #itemList {
+            list-style-type: none;
+            padding: 0;
+        }
+        #itemList li {
+            padding: 5px;
+            border-bottom: 1px solid #ccc;
+        }
+        #itemList li:last-child {
+            border-bottom: none;
+        }
+        #keyCount {
+            font-weight: bold;
+            color: #00698f;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Dynamic Table (3x3)</h2>
+    <div id="tableContainer"></div>
+
+    <h2>Button Mouse Over Color Change</h2>
+    <button id="colorButton">Hover Me</button>
+
+    <h2>Textbox Focus & Change Event</h2>
+    <input type="text" id="textBox" placeholder="Focus me & type something">
+
+    <h2>Add List Item on Double Click</h2>
+    <input type="text" id="listInput" placeholder="Enter text">
+    <button id="addListItem">Double Click Me</button>
+    <ul id="itemList"></ul>
+
+    <h2>Key Press Counter</h2>
+    <input type="text" id="keyCounterInput" placeholder="Type something">
+    <p>Key Press Count: <span id="keyCount">0</span></p>
+
+    <script>
+        let table = document.createElement("table");
+        for (let i = 0; i < 3; i++) {
+            let row = table.insertRow();
+            for (let j = 0; j < 3; j++) {
+                let cell = row.insertCell();
+                cell.textContent = `Row ${i + 1}, Col ${j + 1}`;
+            }
+        }
+        document.getElementById("tableContainer").appendChild(table);
+
+        let colorButton = document.getElementById("colorButton");
+        colorButton.addEventListener("mouseover", () => colorButton.style.backgroundColor = "green");
+        colorButton.addEventListener("mouseout", () => colorButton.style.backgroundColor = "red");
+
+        let textBox = document.getElementById("textBox");
+        textBox.style.backgroundColor = "lightgreen";
+        textBox.addEventListener("focus", () => textBox.style.backgroundColor = "yellow");
+        textBox.addEventListener("change", () => alert("Hello, you changed the text!"));
+
+        let addListItemButton = document.getElementById("addListItem");
+        let listInput = document.getElementById("listInput");
+        let itemList = document.getElementById("itemList");
+        addListItemButton.addEventListener("dblclick", () => {
+            if (listInput.value.trim() !== "") {
+                let listItem = document.createElement("li");
+                listItem.textContent = listInput.value;
+                itemList.appendChild(listItem);
+                listInput.value = "";
+            }
+        });
+
+        let keyCounterInput = document.getElementById("keyCounterInput");
+        let keyCount = document.getElementById("keyCount");
+        let count = 0;
+        keyCounterInput.addEventListener("keypress", () => keyCount.textContent = ++count);
+    </script>
+
+</body>
+</html>

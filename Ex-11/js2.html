@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 20px;
+        }
+        h2 {
+            color: #00698f;
+        }
+        button {
+            margin: 5px;
+            padding: 8px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button:hover {
+            background-color: #3e8e41;
+        }
+        input, textarea {
+            margin: 5px;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        textarea {
+            width: 300px;
+            height: 100px;
+        }
+        #stopwatch {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        #ageResult, #charCount {
+            font-weight: bold;
+            color: #00698f;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Stopwatch</h2>
+    <p id="stopwatch">00:00:00</p>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <button id="reset">Reset</button>
+
+    <h2>Age Calculator</h2>
+    <label>Enter Date of Birth:</label>
+    <input type="date" id="dob">
+    <p>Age: <span id="ageResult">-</span></p>
+
+    <h2>Character Counter</h2>
+    <textarea id="charTextArea" placeholder="Type here..."></textarea>
+    <p>Character Count: <span id="charCount">0</span></p>
+
+    <script>
+        let timer, elapsedSeconds = 0;
+        const stopwatchDisplay = document.getElementById("stopwatch");
+
+        function updateStopwatch() {
+            let hours = Math.floor(elapsedSeconds / 3600);
+            let minutes = Math.floor((elapsedSeconds % 3600) / 60);
+            let seconds = elapsedSeconds % 60;
+            stopwatchDisplay.textContent = 
+                `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+        document.getElementById("start").addEventListener("click", () => {
+            if (!timer) timer = setInterval(() => { elapsedSeconds++; updateStopwatch(); }, 1000);
+        });
+
+        document.getElementById("stop").addEventListener("click", () => {
+            clearInterval(timer);
+            timer = null;
+        });
+
+        document.getElementById("reset").addEventListener("click", () => {
+            clearInterval(timer);
+            timer = null;
+            elapsedSeconds = 0;
+            updateStopwatch();
+        });
+
+        document.getElementById("dob").addEventListener("change", () => {
+            let dob = document.getElementById("dob").value;
+            if (dob) {
+                let birthDate = new Date(dob);
+                let age = new Date().getFullYear() - birthDate.getFullYear();
+                let monthDiff = new Date().getMonth() - birthDate.getMonth();
+                if (monthDiff < 0 || (monthDiff === 0 && new Date().getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                document.getElementById("ageResult").textContent = age;
+            }
+        });
+
+        document.getElementById("charTextArea").addEventListener("input", () => {
+            document.getElementById("charCount").textContent = document.getElementById("charTextArea").value.length;
+        });
+    </script>
+</body>
+</html>

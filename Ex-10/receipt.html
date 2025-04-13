@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Receipt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #A6B48A; 
+            width: 420px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h2 {
+            color: #2E2E2E;
+            margin-bottom: 15px;
+        }
+        
+        .receipt-content {
+            text-align: left;
+            background-color: #E8E6D5;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .info {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .info span {
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 10px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #888;
+        }
+        th {
+            background-color: #C3C3A3;
+        }
+
+        .total {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .back-btn {
+            display: block;
+            width: 80%;
+            padding: 10px;
+            background-color: #A67C52;
+            color: white;
+            border: none;
+            margin: 20px auto 0;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Order Receipt</h2>
+        <div class="receipt-content">
+            <div class="info"><span>Name:</span> <span id="customerName"></span></div>
+            <div class="info"><span>Phone:</span> <span id="phone"></span></div>
+            <div class="info"><span>Email:</span> <span id="email"></span></div>
+            <hr>
+
+            <h3>Order Summary</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody id="orderDetails"></tbody>
+            </table>
+            <div class="total">Total: $<span id="totalPrice">0</span></div>
+        </div>
+
+        <button class="back-btn" onclick="goBack()">BACK TO ORDER</button>
+    </div>
+
+    <script>
+        function loadReceipt() {
+            let orderData = localStorage.getItem("orderData");
+            if (orderData) {
+                let data = JSON.parse(orderData);
+
+                document.getElementById("customerName").textContent = data.firstName + " " + data.lastName;
+                document.getElementById("phone").textContent = data.phone1;
+                document.getElementById("email").textContent = data.email;
+
+                let orderTable = document.getElementById("orderDetails");
+                let total = 0;
+
+                data.order.forEach(item => {
+                    let row = `<tr>
+                        <td>${item.item}</td>
+                        <td>${item.qty} kg</td>
+                        <td>$${item.price * item.qty}</td>
+                    </tr>`;
+                    orderTable.innerHTML += row;
+                    total += item.price * item.qty;
+                });
+
+                document.getElementById("totalPrice").textContent = total;
+            }
+        }
+
+        function goBack() {
+            window.location.href = "order.html";
+        }
+
+        window.onload = loadReceipt;
+    </script>
+</body>
+</html>

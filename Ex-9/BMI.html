@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI calculator Form</title>
+    <style>
+        form {
+            height: 330px;
+            width: 400px;
+            border: 2px solid black;
+            padding: 15px;
+        }
+        div {
+            display: inline-block;
+            width: 60px;
+            height: 50px;
+            border: 2px solid black;
+            border-style: double;
+            font-size: larger;
+            font-style: bold;
+        }
+        label {
+            font-size: medium;
+        }
+        #calc {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <h2 style="text-align: center;">BMI Calculator <select>
+            <option>Male</option>
+            <option>Female</option>
+        </select></h2>
+        <hr>
+        <label><b>Enter Your Weight:</b></label><br>
+        (in pounds)<input type="number" id="weight">
+        <hr>
+        <label><b>Enter Your Height:</b></label><br>
+        (feet)<input type="number" id="he1"><br>
+        <br>(inches)<input type="number" id="he2">
+        <hr>
+        <input type="submit" value="Calculate" id="calc">
+        <hr>
+        <div>YOUR BMI</div>
+        <input type="number" id="ans">
+    </form>
+    <script>
+        let calc = document.getElementById("calc");
+        let ans = document.getElementById("ans");
+
+        const calculateBMI = (event) => {
+            event.preventDefault(); 
+
+            let weight = parseInt(document.getElementById("weight").value);
+            let he1 = parseInt(document.getElementById("he1").value);
+            let he2 = parseInt(document.getElementById("he2").value);
+            if (isNaN(weight) || isNaN(he1) || isNaN(he2)) {
+                alert("Please enter valid numbers for weight and height.");
+                return;
+            }
+
+            let heightInInches = he1 * 12 + he2;
+            let bmiValue = (703 * weight) / (heightInInches * heightInInches); 
+
+            ans.value = bmiValue.toFixed(2);
+            let gender = document.querySelector("select").value;
+            let category;
+            
+            if(gender == "Male") {
+                if(bmiValue < 17.50)
+                    category = "Anorexia";
+                else if(bmiValue >= 17.501 && bmiValue <= 20.70)
+                    category = "Underweight";
+                else if(bmiValue >= 20.71 && bmiValue <= 26.40)
+                    category = "Ideal Range";
+                else if(bmiValue >= 26.41 && bmiValue <= 27.80)
+                    category = "Marginally overweight range";
+                else if(bmiValue >= 27.81 && bmiValue <= 31.10)
+                    category = "Overweight range";
+                else
+                    category = "Very overweight or Obese range";
+            }
+            else {
+                if(bmiValue < 17.50)
+                    category = "Anorexia";
+                else if(bmiValue >= 17.501 && bmiValue <= 19.10)
+                    category = "Underweight";
+                else if(bmiValue >= 19.11 && bmiValue <= 25.80)
+                    category = "Ideal Range";
+                else if(bmiValue >= 25.81 && bmiValue <= 27.30)
+                    category = "Marginally overweight range";
+                else if(bmiValue >= 27.31 && bmiValue <= 32.30)
+                    category = "Overweight range";
+                else
+                    category = "Very overweight or Obese range";
+            }
+            alert(category);
+        };
+
+        calc.addEventListener("click", calculateBMI);
+    </script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Patient Data</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Patient Data</h1>
+    <h3>Sorted by Age (Descending Order)</h3>
+    <table id="sortedTable">
+        <thead>
+            <tr>
+                <th>P-Id</th>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <h3>Check if a particular P-Id is in the list:</h3>
+    <input type="number" id="searchPId" placeholder="Enter P-Id to search">
+    <button onclick="checkPId()">Check P-Id</button>
+    <p id="checkResult" class="error"></p>
+
+    <h3>Filter Patients by Age Range:</h3>
+    <input type="number" id="ageMin" placeholder="Min Age">
+    <input type="number" id="ageMax" placeholder="Max Age">
+    <button onclick="filterByAge()">Filter</button>
+
+    <h3>Filtered Patients by Age</h3>
+    <table id="filteredTable">
+        <thead>
+            <tr>
+                <th>P-Id</th>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        const patients = [
+            { PId: 7, name: "Louis", age: 69 },
+            { PId: 6, name: "Kelvin", age: 61 },
+            { PId: 4, name: "Jack", age: 54 },
+            { PId: 8, name: "Rex", age: 49 },
+            { PId: 2, name: "Deena", age: 47 },
+            { PId: 1, name: "Alen", age: 39 },
+            { PId: 5, name: "Jain", age: 23 },
+            { PId: 3, name: "Diana", age: 21 }
+        ]; // Already sorted in descending order
+
+        function displaySortedData() {
+            const tableBody = document.getElementById('sortedTable').getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = ''; 
+            
+            patients.forEach(patient => {
+                const row = tableBody.insertRow();
+                row.insertCell(0).textContent = patient.PId;
+                row.insertCell(1).textContent = patient.name;
+                row.insertCell(2).textContent = patient.age;
+            });
+        }
+
+        function checkPId() {
+            const searchId = document.getElementById('searchPId').value.trim();
+            const resultText = document.getElementById('checkResult');
+
+            if (!searchId || isNaN(searchId) || searchId <= 0) {
+                resultText.textContent = "Please enter a valid P-Id.";
+                return;
+            }
+
+            const searchNum = parseInt(searchId);
+            const result = patients.find(patient => patient.PId === searchNum);
+            
+            resultText.textContent = result ? 
+                `P-Id ${searchNum} is present. Name: ${result.name}, Age: ${result.age}` 
+                : `P-Id ${searchNum} is NOT found.`;
+        }
+
+        function filterByAge() {
+            const minAge = document.getElementById('ageMin').value.trim();
+            const maxAge = document.getElementById('ageMax').value.trim();
+            const tableBody = document.getElementById('filteredTable').getElementsByTagName('tbody')[0];
+            const errorText = document.getElementById('checkResult');
+
+            if (!minAge || !maxAge || isNaN(minAge) || isNaN(maxAge) || minAge < 0 || maxAge < 0) {
+                errorText.textContent = "Please enter valid age values.";
+                return;
+            }
+
+            const min = parseInt(minAge);
+            const max = parseInt(maxAge);
+
+            if (min > max) {
+                errorText.textContent = "Min age cannot be greater than Max age.";
+                return;
+            }
+            const filteredPatients = patients.filter(patient => patient.age >= min && patient.age <= max);
+            tableBody.innerHTML = '';
+
+            if (filteredPatients.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="3">No patients found in this age range.</td></tr>`;
+                return;
+            }
+
+            filteredPatients.forEach(patient => {
+                const row = tableBody.insertRow();
+                row.insertCell(0).textContent = patient.PId;
+                row.insertCell(1).textContent = patient.name;
+                row.insertCell(2).textContent = patient.age;
+            });
+        }
+        window.onload = displaySortedData;
+    </script>
+</body>
+</html>
